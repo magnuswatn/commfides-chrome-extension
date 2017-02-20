@@ -1,0 +1,12 @@
+# Python stuff
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+ENV/
+
+# private key
+key.pem
+
+# packed extension
+*.crx
