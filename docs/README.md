@@ -10,9 +10,9 @@ Melding fra Chrome:
 {
     "operation": "sign",
     "params" : {
-                  "PIN":  "1234",
-	          "HASH": "hashen"
-              }
+        "pin":  "1234",
+        "hash": "b64-enkodet hash"
+    }
 }
 ```
  
@@ -20,10 +20,10 @@ Melding tilbake:
 ```json
 {
     "status": "success",
-    "params" : {
-                  "signedHash": "SIGNERTHASH",
-	          "cert": "B64-enkodet cert"
-              }
+    "params": {
+        "cert": "B64-enkodet cert",
+        "signedHash": "b64-enkodet signert hash"
+    }
 }
 ```
 

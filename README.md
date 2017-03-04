@@ -10,7 +10,13 @@ Jasså, så du har kjøpt deg elektronisk ID fra Commfides, men er lei deg for a
 
 Først må du installere noen pakker som "may, or may not" gjøre stygge ting med PC-en din mens du sover:
 
-`# dnf install opensc gcc-c++ python-virtualenv` 
+Fedora:
+
+`# dnf install python-develop opensc gcc-c++ python-virtualenv` 
+
+Ubuntu:
+
+`# apt-get install python-dev opensc python-virtualenv` 
 
 Last så ned releasen, og pakk den ut på et logisk sted. Installer tillegget ved å dra crx-filen over til Chrome, og kjør install.sh-scriptet for å installere Python-appen.
 
