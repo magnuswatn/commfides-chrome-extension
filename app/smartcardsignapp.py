@@ -15,7 +15,7 @@ import struct
 
 import PyKCS11
 
-PYKCS11LIB = '/usr/lib64/opensc-pkcs11.so'
+PYKCS11LIB = PKCS11_LIB
 
 KEY_NAME = 'Authentication key'
 CERT_NAME = 'Authentication certificate'

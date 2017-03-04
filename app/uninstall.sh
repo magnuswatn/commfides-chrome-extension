@@ -14,4 +14,4 @@ fi
 
 rm "$TARGET_DIR/$HOST_NAME.json"
 
-echo "Native messaging host $HOST_NAME has been uninstalled."
+echo "$HOST_NAME has been uninstalled."
