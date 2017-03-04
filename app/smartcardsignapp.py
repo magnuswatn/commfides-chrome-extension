@@ -96,3 +96,4 @@ if __name__ == '__main__':
         main()
     except Exception as error:
         return_error_to_plugin(str(error))
+        raise
