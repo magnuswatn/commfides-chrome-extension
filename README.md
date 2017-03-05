@@ -5,6 +5,7 @@ Jasså, så du har kjøpt deg elektronisk ID fra Commfides, men er lei deg for a
 
 ![bilde](https://raw.githubusercontent.com/magnuswatn/commfides-chrome-extension/master/docs/bilde.png)
 
+(dette tillegget er laget av egeninteresse og har ingen knytning med Commfides)
 
 ## Installasjon
 
