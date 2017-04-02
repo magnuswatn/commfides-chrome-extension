@@ -30,5 +30,10 @@
         "all_frames": true
     }],
     "web_accessible_resources": ["getParameters.js"],
+    "applications": {
+        "gecko": {
+            "id": "commfides-chrome-extension@magnus.watn.no"
+        }
+    },
     "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAudPCMNg0u1xWDROcnHkH6asnJCmPKYvZW8+fM/6/H+UQn9mUqyQ8yjp3tPR8r5dOoKi7e80d3tKB3k74MvyxF90zEKWPW357mFv01+G5bdySSCIRK+i09rZqLTSef7t1FP9GNBjOzSPz7TEKL1dYgYS9tQcUWs8DPuIexhcx6jzoYw6H0N1UZAM5h4f8ZtrtVaw30QCU0vd/jIOmOYJxoDCYlPxU2u9Mo8ZyY4SLuAmLF+co5P/xDNU1RAqfYU+GbMQMS9bdjPPoH6s7VueeXBllcCqJ+5b5YLlmVu5Gu1jzTYzVSTfoPX5RWtxf6+gdSUJinpB3v24vVKDAU1Wt1QIDAQAB"
 }

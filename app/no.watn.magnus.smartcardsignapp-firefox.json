@@ -1,0 +1,7 @@
+{
+  "name": "no.watn.magnus.smartcardsignapp",
+  "description": "Native app for commfides-chrome-extension. Talks to the smartcard",
+  "path": "HOST_PATH",
+  "type": "stdio",
+  "allowed_extensions": [ "commfides-chrome-extension@magnus.watn.no" ]
+}

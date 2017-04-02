@@ -5,6 +5,32 @@ set APP_NAME=no.watn.magnus.smartcardsignapp
 set SCRIPT_NAME=smartcardsignapp.py
 set WRAPPER_SCRIPT=smartcardsignapp.bat
 
+:question
+echo Install for Chrome, Firefox, or both?
+echo.
+echo 1 - Chrome
+echo 2 - Firefox
+echo 3 - Both
+echo.
+set /P choice=Choose 1, 2, or 3:
+
+if not defined choice (
+    goto question
+)
+
+if %choice%==1 (
+    set CH=true
+    set FF=false
+) else if %choice%==2 (
+    set CH=false
+    set FF=true
+) else if %choice%==3 (
+    set CH=true
+    set FF=true
+) else (
+    goto question
+)
+
 @rem Test if virtualenv in path
 where virtualenv.exe >nul 2>&1
 if %errorlevel% NEQ 0 (
@@ -43,22 +69,43 @@ for /F "delims=æøå usebackq" %%A in ("%~dp0%SCRIPT_NAME%") do (
 del %~dp0%SCRIPT_NAME%
 rename %~dp0TEMP %SCRIPT_NAME%
 
-@rem Update path to the script in the manifest
-for /F "delims=æøå usebackq" %%A in ("%~dp0%APP_NAME%.json") do (
+@rem Update path to the script in the Chrome manifest
+for /F "delims=æøå usebackq" %%A in ("%~dp0%APP_NAME%-chrome.json") do (
     set line=%%A
     set modified=!line:"HOST_PATH"="%WRAPPER_SCRIPT%"!
     echo !modified! >> %~dp0TEMP
 )
-del %~dp0%APP_NAME%.json
-rename %~dp0TEMP %APP_NAME%.json
+del %~dp0%APP_NAME%-chrome.json
+rename %~dp0TEMP %APP_NAME%-chrome.json
 
-@rem Install in Chrome
+@rem Update path to the script in the Firefox manifest
+for /F "delims=æøå usebackq" %%A in ("%~dp0%APP_NAME%-firefox.json") do (
+    set line=%%A
+    set modified=!line:"HOST_PATH"="%WRAPPER_SCRIPT%"!
+    echo !modified! >> %~dp0TEMP
+)
+del %~dp0%APP_NAME%-firefox.json
+rename %~dp0TEMP %APP_NAME%-firefox.json
+
 @rem Install in HKLM if running as admin, otherwise HKCU
-net session >nul 2>&1
-if %errorlevel% == 0 (
-    REG ADD "HKLM\Software\Google\Chrome\NativeMessagingHosts\%APP_NAME%" /ve /t REG_SZ /d "%~dp0%APP_NAME%.json" /f
-) else (
-    REG ADD "HKCU\Software\Google\Chrome\NativeMessagingHosts\%APP_NAME%" /ve /t REG_SZ /d "%~dp0%APP_NAME%.json" /f
+if %CH% == true (
+    echo Installing for Chrome
+    net session >nul 2>&1
+    if !errorlevel! == 0 (
+        REG ADD "HKLM\Software\Google\Chrome\NativeMessagingHosts\%APP_NAME%" /ve /t REG_SZ /d "%~dp0%APP_NAME%-chrome.json" /f
+    ) else (
+        REG ADD "HKCU\Software\Google\Chrome\NativeMessagingHosts\%APP_NAME%" /ve /t REG_SZ /d "%~dp0%APP_NAME%-chrome.json" /f
+    )
+)
+
+if %FF% == true (
+    echo Installing for Firefox
+    net session >nul 2>&1
+    if !errorlevel! == 0 (
+        REG ADD "HKLM\Software\Mozilla\NativeMessagingHosts\%APP_NAME%" /ve /t REG_SZ /d "%~dp0%APP_NAME%-firefox.json" /f
+    ) else (
+        REG ADD "HKCU\Software\Mozilla\NativeMessagingHosts\%APP_NAME%" /ve /t REG_SZ /d "%~dp0%APP_NAME%-firefox.json" /f
+    )
 )
 
 echo %APP_NAME% has been installed

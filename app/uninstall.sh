@@ -6,12 +6,35 @@ HOST_NAME=no.watn.magnus.smartcardsignapp
 
 set -e
 
-if [ "$(whoami)" = "root" ]; then
-    TARGET_DIR="/etc/opt/chrome/native-messaging-hosts"
+if [[ $1 == "chrome" ]]; then
+  CH=true
+elif [[ $1 == "firefox" ]]; then
+  FF=true
+elif [[ $1 == "both" ]]; then
+  CH=true
+  FF=true
 else
-    TARGET_DIR="$HOME/.config/google-chrome/NativeMessagingHosts"
+  echo "Usage: $0 [chrome|firefox|both]"
+  exit 1
 fi
 
-rm "$TARGET_DIR/$HOST_NAME.json"
+if [ "$(whoami)" = "root" ]; then
+  CH_TARGET_DIR="/etc/opt/chrome/native-messaging-hosts"
+  FF_TARGET_DIR="/usr/lib64/mozilla/native-messaging-hosts"
+else
+  CH_TARGET_DIR="$HOME/.config/google-chrome/NativeMessagingHosts"
+  FF_TARGET_DIR="$HOME/.mozilla/native-messaging-hosts"
+fi
 
-echo "$HOST_NAME has been uninstalled."
+if [ $CH ]; then
+  echo "Uninstalling from Chrome..."
+  rm "$CH_TARGET_DIR/$HOST_NAME.json"
+fi
+
+if [ $FF ]; then
+  echo "Uninstalling from Firefox.."
+  rm "$FF_TARGET_DIR/$HOST_NAME.json"
+fi
+
+echo ""
+echo "$HOST_NAME has been uninstalled. You can now delete the files."
