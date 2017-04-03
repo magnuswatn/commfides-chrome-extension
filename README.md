@@ -39,4 +39,4 @@ Last så ned releasen, pakk den ut på et logisk sted og kjør install.bat-scrip
 
 ---
 
-Selve tillegget kan installeres i Chrome ved å dra crx-filen over til chrome://extensions. Så er det bare å logge seg inn og kooose seg på allverdens slags offentlige tjenester.
+Selve tillegget kan installeres fra [Chrome Web Store](https://chrome.google.com/webstore/detail/fdcjkappaacnnajkahkkcndafcipojag). Så er det bare å logge seg inn og kooose seg på allverdens slags offentlige tjenester.

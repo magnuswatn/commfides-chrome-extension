@@ -10,3 +10,4 @@ key.pem
 
 # packed extension
 *.crx
+*.zip
